@@ -1,0 +1,19 @@
+{
+
+    "name": "lionel/php_project",
+    "authors": [
+        {
+            "name": "Myo Min Htoo",
+            "email": "myominhtoo2003@gmail.com"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.19"
+    },
+    "autoload" : {
+        "psr-4" :{
+            "Libs\\" : "classes/Libs",
+            "Helpers\\" : "classes/Helpers"
+        }
+    }
+}
