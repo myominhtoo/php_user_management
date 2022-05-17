@@ -14,16 +14,16 @@
     <main class="card w-25 p-3">
         <form action="./actions/create.php" method="post" class="form">
             <div class="form-group my-2"> 
-                <label for="" class="form-label">Name</label><input type="text" class="form-control" name="name" placeholder="Enter name">
+                <label for="" class="form-label">Name</label><input type="text" class="form-control" name="name" placeholder="Enter name" required autofocus>
             </div>
             <div class="form-group my-2">
-                <label for="" class="form-label">Email</label><input type="text" class="form-control" name="email" placeholder="Enter email">    
+                <label for="" class="form-label">Email</label><input type="text" class="form-control" name="email" placeholder="Enter email" required>    
             </div>
             <div class="form-group my-2">
-                <label for="" class="form-label">Phone</label><input type="text" class="form-control" name="phone" placeholder="Enter phone">
+                <label for="" class="form-label">Phone</label><input type="text" class="form-control" name="phone" placeholder="Enter phone" required>
             </div>
             <div class="form-group my-2">
-                <label for="" class="form-label">Password</label><input type="password" class="form-control" name="password" placeholder="Enter password">
+                <label for="" class="form-label">Password</label><input type="password" class="form-control" name="password" placeholder="Enter password" required>
             </div>
             <div class="form-group my-2">
                 <label for="" class="form-label">Role</label>
@@ -33,11 +33,10 @@
                     <option value="2">Sale</option>
                     <option value="3">HR</option>
                     <option value="4">Manager</option>
-                    <option value="5">Lead</option>
                 </select>
             </div>
             <div class="form-group my-2">
-                <label for="" class="form-label">Address</label><textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
+                <label for="" class="form-label">Address</label><textarea name="address" id="" cols="30" rows="5" class="form-control" required></textarea>
             </div>
             <div class="form-group my-2 d-flex justify-content-between">
                <a href="./index.php" class="btn btn-warning">Already?</a><button class="btn btn-success" type="submit">Create</button>

@@ -25,9 +25,10 @@
 
         public function getAll(){
             try{    
-                $query = "SELECT users.* , roles.name AS role , roles.name FROM users LEFT JOIN roles ON users.role_id = roles.id";
+                $query = "SELECT users.* , roles.name AS role  FROM users LEFT JOIN roles ON users.role_id = roles.id";
                 
-                $stm = $this->db->query($query);
+                $stm = $this->db->prepare($query);
+                $stm->execute();
 
                 return $stm->fetchAll();
             }catch(PDOException $e){
@@ -72,10 +73,12 @@
             }
         }
 
-        public function changeRole(int $id , int $role){
-            try{
-                $stm = $this->db->prepare("UPDATE users SET role_id = :role WHERE id = :id");
-                $stm->execute([":role" => $role , ":id" => $id]);
+        public function suspend(int $id){
+            try{    
+                $stm = $this->db->prepare("UPDATE users SET suspend = 1 WHERE id = :id");
+                $stm->execute([
+                    ":id" => $id,
+                ]);
 
                 return $stm->rowCount();
             }catch(PDOException $e){
@@ -83,4 +86,30 @@
             }
         }
 
+        public function unSuspend(int $id){
+            try{    
+                $stm = $this->db->prepare("UPDATE users SET suspend = 0 WHERE id = :id");
+                $stm->execute([
+                    ":id" => $id,
+                ]);
+
+                return $stm->rowCount();
+            }catch(PDOException $e){
+                return $e->getMessage();
+            }
+        }
+
+        public function changeRole(int $id , int $role){
+            try{
+                $stm = $this->db->prepare("UPDATE users SET role_id = :role WHERE id = :id");
+                $stm->execute([
+                    ":role" => $role,
+                    ":id" => $id
+                ]);
+
+                return $stm->rowCount();
+            }catch(PDOException $e){
+                return $e->getMessage();
+            }
+        }
     }

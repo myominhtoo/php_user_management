@@ -8,7 +8,10 @@
     if(isset($_POST)){
         $table = new UsersTable(new MySQL());
 
-        $status = $table->findByEmailAndPassword($_POST['email'],md5($_POST['password']));
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $status = $table->findByEmailAndPassword($email,md5($password));
 
         if($status){
             session_start();
@@ -17,17 +20,28 @@
                 "id" => $status->id,
                 "name" => $status->name,
                 "email" => $status->email,
-                "role" => $status->role
+                "role" => $status->role,
+                "suspend" => $status->suspend,
             ];
 
+            if($user['suspend'] === 1){
+                HTTP::redirect("/index.php","error=true&msg=Your account was blocked!&email=$email&password=$password");
+            }
+
             $_SESSION['user'] = $user;
-            HTTP::redirect("/admin.php");
+            
+            if($user['role'] === "Admin" || $user['role'] === "Manager" || $user['role'] === "Lead"){
+                 HTTP::redirect("/admin.php");
+            }
+            else{
+                 HTTP::redirect("/profile.php");
+            }
         }else{
             $data = [
                 "email" => $_POST['email'],
                 "password" => $_POST['password']
             ];
-            HTTP::redirect("/index.php","error=true&data=$data");
+            HTTP::redirect("/index.php","error=true&msg=Invalid email or password!&email=$email&password=$password");
         }
 
     }
