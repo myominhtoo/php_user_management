@@ -38,8 +38,21 @@
 
         public function findById(int $id){
             try{
-                $stm = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+                $stm = $this->db->prepare("SELECT users.*,roles.name AS role FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE users.id = :id");
                 $stm->execute([":id"=>$id]);
+
+                $row = $stm->fetch();
+
+                return $row ?? false;
+            }catch(PDOException $e){
+                return $e->getMessage();
+            }
+        }
+
+        public function findByEmail(string $email){
+            try{
+                $stm = $this->db->prepare("SELECT users.*,roles.name AS role FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE users.email = :email");
+                $stm->execute([":email"=>$email]);
 
                 $row = $stm->fetch();
 
@@ -107,6 +120,39 @@
                     ":id" => $id
                 ]);
 
+                return $stm->rowCount();
+            }catch(PDOException $e){
+                return $e->getMessage();
+            }
+        }
+
+        public function uploadImage(int $id , string $image){
+            try{
+                $stm = $this->db->prepare("UPDATE users SET image = :image WHERE id = :id");
+                $stm->execute([
+                    ":image" => $image,
+                    ":id" => $id
+                ]);
+                
+                return $stm->rowCount();
+            }catch(PDOException $e){
+                return $e->getMessage();
+            }
+        }
+
+
+        //the following  method should not be, args are mush more than need , later will try with obj 
+        public function update(int $id , string $name , string $email , string $phone , string $address , string $image){
+            try{
+                $stm = $this->db->prepare("UPDATE users SET name =:name , email =:email , phone =:phone , address =:address , image =:image WHERE id = :id ");
+                $stm->execute([
+                    ":name" => $name,
+                    ":email" => $email,
+                    ":phone" => $phone,
+                    ":address" => $address,
+                    ":image" => $image,
+                    ":id" => $id
+                ]);
                 return $stm->rowCount();
             }catch(PDOException $e){
                 return $e->getMessage();

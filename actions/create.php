@@ -18,7 +18,9 @@
         
         $table = new UsersTable(new MySQL());
 
-        if($table){
+        $user = $table->findByEmail($_POST['email']);
+
+        if(!$user){
            $table->insert($datas);
             HTTP::redirect("/index.php","registered=true");
         }else{

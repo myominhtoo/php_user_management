@@ -19,9 +19,13 @@
             $user = [
                 "id" => $status->id,
                 "name" => $status->name,
+                "phone" => $status->phone,
+                "address" => $status->address,
                 "email" => $status->email,
                 "role" => $status->role,
                 "suspend" => $status->suspend,
+                "photo" => $status->image,
+                "created_at" => $status->created_at,
             ];
 
             if($user['suspend'] === 1){
