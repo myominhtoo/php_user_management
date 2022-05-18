@@ -23,9 +23,6 @@ I got usable code writing skill and project structure from it . I really
 appreciate for his book.
 
 
-
-
-
 ## Tech Stack
 
 **Client:** Bootstrap
@@ -57,9 +54,9 @@ To deploy this project
 
 ## Screenshots
 
-![Register Page](./actions/ss1.png)
-![Login Page](./actions/ss2.png)
-![Upload](./actions/ss3.png)
-![Update](./actions/ss4.png)
-![Profile](./actions/ss5.png)
-![Admin Panel](./actions/ss6.png)
+![Register Page](https://github.com/myominhtoo/php_user_management/blob/master/actions/photos/ss1.png)
+![Login Page](https://github.com/myominhtoo/php_user_management/blob/master/actions/photos/ss2.png)
+![Upload](https://github.com/myominhtoo/php_user_management/blob/master/actions/photos/ss3.png)
+![Update](https://github.com/myominhtoo/php_user_management/blob/master/actions/photos/ss4.png)
+![Profile](https://github.com/myominhtoo/php_user_management/blob/master/actions/photos/ss5.png)
+![Admin Panel](https://github.com/myominhtoo/php_user_management/blob/master/actions/photos/ss6.png)
